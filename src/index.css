@@ -1,0 +1,218 @@
+:root {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+body {
+  background-color: #f1f1f1 !important; /* cinza claro */
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+/* Tipografia padrão dos campos de formulário */
+input,
+select,
+textarea,
+.form-control,
+.form-select {
+  font-size: 0.7rem;
+  font-family: inherit; /* herda Poppins do body */
+  line-height: 1.1;
+}
+
+/* Ajustes específicos para seletores de data */
+input[type="date"],
+.form-control[type="date"] {
+  font-size: 0.7rem;
+  line-height: 1.1;
+}
+
+/* Ajusta indicador do calendário para ficar proporcional ao tamanho compacto */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  width: 14px;
+  height: 14px;
+}
+
+/* Utilitários compactos e consistentes */
+.form-compact {
+  font-size: 0.7rem !important;
+  line-height: 1.1 !important;
+  padding-top: 0.25rem !important;
+  padding-bottom: 0.25rem !important;
+}
+
+/* Uniformiza a altura dos campos compactos (input/select),
+   garantindo que Datas (Início/Final) tenham a mesma altura da Filial */
+.form-control.form-control-sm.form-compact,
+.form-select.form-select-sm.form-compact {
+  height: 30px; /* altura única para todos os campos compactos */
+}
+
+/* Assegura que o input de data acompanhe a mesma altura */
+input[type="date"].form-control.form-control-sm.form-compact,
+.form-control[type="date"].form-control-sm.form-compact {
+  height: 30px;
+}
+
+.btn-compact {
+  font-size: 0.7rem !important;
+  line-height: 1.1 !important;
+  height: 30px; /* igual aos campos compactos */
+  padding: 0 0.5rem !important; /* remove padding vertical para altura consistente */
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Botões padrão do GestPRO: tipografia compacta e altura consistente */
+.btn-gestpro {
+  font-size: 0.7rem !important;
+  line-height: 1.1 !important;
+  height: 28px;
+  padding: 0 0.5rem !important;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* O conteúdo principal da página GestLOG ocupa a viewport e evita rolagem do body */
+.gestlog-content {
+  height: calc(100vh - 120px); /* ajusta conforme cabeçalho superior */
+  overflow: hidden; /* impede rolagem no container, a rolagem será interna na lista */
+}
+
+/* Classe utilitária opcional caso seja necessário aplicar diretamente */
+.resultados-gestlog-scroll {
+  height: 100%;
+  overflow: auto;
+}
+/* Hover verde para linhas de tabela de duplicatas */
+.table-hover-green tbody tr:hover,
+.table-hover-green.table-hover tbody tr:hover {
+  background-color: rgba(25, 135, 84, 0.15) !important; /* verde bootstrap #198754 com transparência */
+}
+
+/* Seleção por clique: fundo verde para linha selecionada */
+.row-selected-green {
+  background-color: rgba(25, 135, 84, 0.22) !important;
+}
+
+/* Cursor para indicar que a linha é clicável */
+.row-selectable {
+  cursor: pointer;
+}
+
+.gestmkt-hover {
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+
+.gestmkt-hover:hover {
+  background-color: rgba(13, 110, 253, 0.1) !important;
+}
+
+.gestmkt-hover:hover .gestmkt-hover-title {
+  color: rgb(13, 110, 253) !important;
+}
+
+/* Padronização global: controles pequenos com altura 28px e tipografia 0.7rem */
+.form-control.form-control-sm {
+  font-size: 0.7rem;
+  line-height: 1.1;
+  height: 28px;
+}
+
+.form-select.form-select-sm {
+  font-size: 0.7rem;
+  line-height: 1.1;
+  height: 28px;
+}
+
+/* Grid customizado: col-md-1-5 (equivale a 1.5 colunas de 12) */
+@media (min-width: 768px) {
+  .col-md-1-5 {
+    flex: 0 0 auto;
+    width: 12.5%; /* 1.5/12 ≈ 12.5% */
+  }
+}
+
+/* Cabeçalho fixo para tabelas (sticky header) */
+.table-sticky thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background-color: #f8f9fa; /* cor clara para header */
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.125); /* linha inferior sutil */
+}

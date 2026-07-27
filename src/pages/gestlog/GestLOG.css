@@ -1,0 +1,24 @@
+/* GestLOG agora herda estrutura visual do GestMKT (Bootstrap).
+   Removemos layout container antigo para não interferir. */
+
+/* Removido ajuste global de fonte para evitar conflito com Bootstrap */
+
+/* Removido bloco gestlog-content: conteúdo agora fica em cards Bootstrap */
+
+.gestlog-container header {
+  font-size: 0.9rem;
+}
+
+.gestlog-container header .h4 {
+  font-size: 1.25rem !important;
+}
+
+/* Removidos estilos antigos do cabeçalho/local info */
+
+/* manter apenas um bloco de estilos finais para gestlog-content,
+   garantindo layout flex e compactação */
+/* Removido bloco duplicado de gestlog-content */
+
+/* Removidos estilos de notice não utilizados */
+
+/* Removidos media queries do layout antigo */
