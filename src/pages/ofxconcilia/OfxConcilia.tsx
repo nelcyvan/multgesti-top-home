@@ -23,6 +23,7 @@ import Dashboard from "./Dashboard";
 import ContasApagar from "./ContasApagar";
 import { getDateRange, DATE_RANGE_OPTIONS } from "./.ts/logistica/DateHelpers";
 
+import { appUrl } from "../../utils/appUrl";
 const OfxConcilia: React.FC = () => {
   const [selectedItem, setSelectedItem] = useState<string>("Dashboard");
   const topBarLabelStyle: React.CSSProperties = { fontSize: "0.60rem", lineHeight: 1, marginTop: "2px", textAlign: "center" };
@@ -1283,7 +1284,7 @@ const OfxConcilia: React.FC = () => {
         title=""
         titleClassName="d-none"
         showBack={true}
-        backLink="/dashboard"
+        backLink={appUrl("/dashboard")}
       >
         <div className="d-flex flex-wrap align-items-center ms-0" style={{ columnGap: "1.15rem", rowGap: "0.75rem" }}>
           {menuItems.map((item) => {
@@ -1327,7 +1328,7 @@ const OfxConcilia: React.FC = () => {
           <span className="text-muted" style={{ fontSize: "0.85rem" }}>
             © 2026 GestFácil - Concilia
           </span>
-          <a href="/dashboard" className="text-decoration-none">Voltar ao Dashboard</a>
+          <a href={appUrl("/dashboard")} className="text-decoration-none">Voltar ao Dashboard</a>
         </div>
       </footer>
     </div>

@@ -1,7 +1,13 @@
 import express from "express";
 import oracledb from "oracledb";
 import crypto from "crypto";
-import sharp from "sharp";
+let sharp = null;
+try {
+  sharp = (await import("sharp")).default;
+} catch (err) {
+  console.warn("[GestLOG] sharp indisponivel neste host; thumbnails serao servidos sem resize:", err?.message || err);
+}
+
 
 const router = express.Router();
 
@@ -140,21 +146,27 @@ router.get("/api/gestlog/pedidos-fotos/arquivo-thumb", async (req, res) => {
     }
 
     let outBuf;
-    if (fmt === "webp") {
-      outBuf = await sharp(buf).resize({ width: w, withoutEnlargement: true, fit: "inside" }).webp({ quality: q }).toBuffer();
+    let outFmt = fmt;
+    if (sharp) {
+      if (fmt === "webp") {
+        outBuf = await sharp(buf).resize({ width: w, withoutEnlargement: true, fit: "inside" }).webp({ quality: q }).toBuffer();
+      } else {
+        outBuf = await sharp(buf).resize({ width: w, withoutEnlargement: true, fit: "inside" }).jpeg({ quality: q, mozjpeg: true }).toBuffer();
+      }
     } else {
-      outBuf = await sharp(buf).resize({ width: w, withoutEnlargement: true, fit: "inside" }).jpeg({ quality: q, mozjpeg: true }).toBuffer();
+      outBuf = buf;
+      outFmt = mimeIn.includes("webp") ? "webp" : mimeIn.includes("png") ? "png" : "jpeg";
     }
 
     const etag = etagFor(outBuf);
     const inm = String(req.headers["if-none-match"] || "");
     if (inm && inm === etag) return res.status(304).end();
 
-    res.setHeader("Content-Type", fmt === "webp" ? "image/webp" : "image/jpeg");
+    res.setHeader("Content-Type", outFmt === "webp" ? "image/webp" : outFmt === "png" ? "image/png" : "image/jpeg");
     res.setHeader("Content-Length", String(outBuf.length));
     res.setHeader("Cache-Control", "private, max-age=604800");
     res.setHeader("ETag", etag);
-    res.setHeader("Content-Disposition", `inline; filename="${numPedidoNum}-${col}-thumb.${fmt === "webp" ? "webp" : "jpg"}"`);
+    res.setHeader("Content-Disposition", `inline; filename="${numPedidoNum}-${col}-thumb.${outFmt === "webp" ? "webp" : outFmt === "png" ? "png" : "jpg"}"`);
     return res.status(200).send(outBuf);
   } catch (err) {
     console.error("[GestLOG] Erro ao gerar thumbnail do pedido:", err);

@@ -3,6 +3,8 @@ import oracledb from "oracledb";
 import { Pool } from "pg";
 import cors from "cors";
 import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
 import registerAssumirSeparacaoPedido from "./apis/gestlog/assumirSeparacaoPedido.js";
 import registerCancelarSeparacaoPedido from "./apis/gestlog/cancelarSeparacaoPedido.js";
 import registerEnviarPedidoColeta from "./apis/gestlog/enviarPedidoColeta.js";
@@ -18,7 +20,9 @@ import registerBuscarProdutosSemGtin from "./apis/gestlog/buscarProdutosSemGtin.
 import registerExcluirProdutoSemGtin from "./apis/gestlog/excluirProdutoSemGtin.js";
 import registerGerirPermissoesUsuario from "./apis/gestlog/gerirPermissoesUsuario.js";
 
-dotenv.config({ path: "/home/multgesti/.env" });
+// Carrega o .env na raiz do projeto (multgesti-top-home/.env)
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 oracledb.initOracleClient({ libDir: process.env.ORACLE_CLIENT_LIB });
 
 const app = express();

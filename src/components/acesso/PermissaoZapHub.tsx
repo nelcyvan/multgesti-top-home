@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useHistory } from "react-router-dom";
 import { verificarPermissaoZapHub } from "../../services/acesso/PermissaoZapHub";
 
+import { appUrl } from "../../utils/appUrl";
 interface UsuarioLocalStorage {
   nome?: string;
   usuario?: string;
@@ -59,7 +60,7 @@ const PermissaoZapHub: React.FC = () => {
           </div>
         )}
         <div className="mt-4 d-flex justify-content-between">
-          <a className="btn btn-outline-secondary" href="/dashboard">Voltar</a>
+          <a className="btn btn-outline-secondary" href={appUrl("/dashboard")}>Voltar</a>
           {mensagem && <button className="btn btn-primary" onClick={() => history.push("/zaphub")}>Ir para ChatHub</button>}
         </div>
       </div>

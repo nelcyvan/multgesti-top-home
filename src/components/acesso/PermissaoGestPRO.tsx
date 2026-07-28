@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { verificarPermissaoGestPRO } from "../../services/acesso/PermissaoGestPRO";
 
+import { appUrl } from "../../utils/appUrl";
 interface UsuarioLocalStorage {
   nome?: string;
   usuario?: string;
@@ -53,7 +54,7 @@ const PermissaoGestPRO: React.FC = () => {
         {erro && <div className="alert alert-danger">{erro}</div>}
         {mensagem && <div className="alert alert-success">{mensagem}</div>}
         <div className="mt-4 d-flex justify-content-between">
-          <a className="btn btn-outline-secondary" href="/dashboard">Voltar</a>
+          <a className="btn btn-outline-secondary" href={appUrl("/dashboard")}>Voltar</a>
           {mensagem && <button className="btn btn-primary" onClick={() => history.replace("/gestpro")}>Ir para GestPRO</button>}
         </div>
       </div>

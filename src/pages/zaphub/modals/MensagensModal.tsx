@@ -1,5 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { appUrl } from "../../../utils/appUrl";
 import {
   ArchiveFill,
   ArrowClockwise,
@@ -1512,7 +1513,7 @@ const MensagensModal: React.FC<MensagensModalProps> = ({ show, onClose }) => {
     } catch {
       void 0;
     }
-    window.location.href = "/";
+    window.location.href = appUrl("/");
   }, []);
 
   const getMatriculaLogada = React.useCallback(() => {

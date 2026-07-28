@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
 import oracledb from "oracledb";
 import multer from "multer";
 import fs from "fs";
@@ -10,8 +12,9 @@ import registerComissoesPorFreteMesAnteriorTotal from "./apis/comissoesPorFreteM
 import registerComissoesPorFreteMesAnteriorEmAbertoTotal from "./apis/comissoesPorFreteMesAnteriorEmAbertoTotal.js";
 import registerComissoesPorFreteMesAtualEmAbertoTotal from "./apis/comissoesPorFreteMesAtualEmAbertoTotal.js";
 
-// Carrega o .env
-dotenv.config({ path: "/home/multgesti/.env" });
+// Carrega o .env na raiz do projeto (multgesti-top-home/.env)
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 
 // Inicializa o Oracle Client
 oracledb.initOracleClient({ libDir: process.env.ORACLE_CLIENT_LIB });
@@ -38,7 +41,7 @@ app.use((req, _res, next) => {
 });
 
 // Configuração de upload (comprovantes)
-const uploadDir = "/home/multgesti/gestpro.out/comprovantes";
+const uploadDir = path.resolve(__dirname, "../../gestpro.out/comprovantes");
 try { fs.mkdirSync(uploadDir, { recursive: true }); } catch {}
 const storage = multer.diskStorage({
   destination: (_req, _file, cb) => cb(null, uploadDir),

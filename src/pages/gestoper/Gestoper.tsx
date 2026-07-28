@@ -12,6 +12,7 @@ import { atualizarStatusEspecial } from "../../services/gestlog/MarcarVisualizac
 import AjusteEstoqueModal from "../gestpro/components/modals/AjusteEstoqueModal";
 import AuditoriaModal from "../gestpro/components/modals/AuditoriaModal";
 
+import { appUrl } from "../../utils/appUrl";
 const resolveBaseApi = () => {
   const envRaw = (import.meta as any)?.env?.VITE_API_URL as string | undefined;
   const isHttps = typeof window !== "undefined" && window.location?.protocol === "https:";
@@ -1917,7 +1918,7 @@ const Gestoper: React.FC = () => {
         title=""
         titleClassName="d-none"
         showBack={true}
-        backLink="/dashboard"
+        backLink={appUrl("/dashboard")}
         actions={
           <button
             className="btn btn-primary d-flex align-items-center justify-content-center"

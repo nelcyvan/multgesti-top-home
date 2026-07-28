@@ -20,7 +20,7 @@ import ChatHub from './pages/zaphub/ChatHub';
 
 const App: React.FC = () => {
   return (
-    <Router>
+    <Router basename="/multigesti">
       <IdleRedirect />
       <Switch>
         <Route exact path="/" component={LoginComponent} />

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { verificarPermissaoGestMKT } from "../../services/acesso/PermissaoGestMKT";
 
+import { appUrl } from "../../utils/appUrl";
 interface UsuarioLocalStorage {
   nome?: string;
   usuario?: string;
@@ -29,7 +30,7 @@ const PermissaoGestMKT: React.FC = () => {
             `Usuário: ${usuario.usuario || usuario.nome || "-"}, código: ${String(codigoUsuario)} tem permissão a página GestMKT`
           );
           // Redireciona automaticamente para a página de GestMKT
-          window.location.href = "/gestmkt";
+          window.location.href = appUrl("/gestmkt");
         } else {
           setErro(resp.message || "Usuário sem permissão para GestMKT.");
         }
@@ -51,7 +52,7 @@ const PermissaoGestMKT: React.FC = () => {
         {erro && <div className="alert alert-danger">{erro}</div>}
         {mensagem && <div className="alert alert-success">{mensagem}</div>}
         <div className="mt-4 d-flex justify-content-between">
-          <a className="btn btn-outline-secondary" href="/dashboard">Voltar</a>
+          <a className="btn btn-outline-secondary" href={appUrl("/dashboard")}>Voltar</a>
         </div>
       </div>
     </div>

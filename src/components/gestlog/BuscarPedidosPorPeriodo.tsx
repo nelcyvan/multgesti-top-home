@@ -14,6 +14,7 @@ import type { AtualizarCadastroItem } from './AtualizarCadastro';
 import { atualizarCadastro } from '../../services/gestlog/AtualizarCadastro';
 import { buscarLogs } from '../../services/gestlog/BuscarLogs';
 
+import { appUrl } from "../../utils/appUrl";
 // Componente auxiliar para badge + switch integrado
   const AutoRefresher: React.FC<{ intervalMs: number; onRefresh: () => Promise<void>; isActive: boolean }> = ({ intervalMs, onRefresh, isActive }) => {
     useEffect(() => {
@@ -2834,7 +2835,7 @@ const BuscarPedidosPorPeriodo = forwardRef<BuscarPedidosRef, { onResultado?: (ro
                         <button 
                           type="button"
                           className="btn btn-outline-secondary btn-sm ms-3 d-inline-flex align-items-center" 
-                          onClick={() => { setShowInformativoModal(false); window.location.href = '/dashboard'; }}
+                          onClick={() => { setShowInformativoModal(false); window.location.href = appUrl('/dashboard'); }}
                           title="Voltar para Dashboard" 
                           style={{ height: '38px', padding: '0 10px', gap: '8px' }}
                         >
@@ -2845,7 +2846,7 @@ const BuscarPedidosPorPeriodo = forwardRef<BuscarPedidosRef, { onResultado?: (ro
                         <button 
                           type="button"
                           className="btn btn-outline-danger btn-sm ms-3 d-inline-flex align-items-center"
-                          onClick={() => { localStorage.removeItem('usuarioLogado'); window.location.href = '/'; }}
+                          onClick={() => { localStorage.removeItem('usuarioLogado'); window.location.href = appUrl('/'); }}
                           title="Sair do Sistema"
                           style={{ height: '38px', padding: '0 10px', gap: '8px' }}
                         >

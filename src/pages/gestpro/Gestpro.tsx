@@ -42,6 +42,7 @@ import ConciliacaoTV7Modal from "./ConciliacaoTV7Modal";
 import PedidosPrioridadeModal from "./PedidosPrioridadeModal";
 import RetMessejanaSidebarModal from "./components/modals/RetMessejanaSidebarModal";
 
+import { appUrl } from "../../utils/appUrl";
 // Helper functions for Qtd Total calculation
 const SCALE = 1_000_000n;
 
@@ -1159,7 +1160,7 @@ const Gestpro: React.FC = () => {
         title=""
         titleClassName="d-none"
         showBack={true}
-        backLink="/dashboard"
+        backLink={appUrl("/dashboard")}
         actions={
           <button
             className="btn btn-primary d-flex align-items-center justify-content-center"

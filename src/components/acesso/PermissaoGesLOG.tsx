@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { verificarPermissaoGestLOG } from "../../services/acesso/PermissaoGestLOG";
 
+import { appUrl } from "../../utils/appUrl";
 interface UsuarioLocalStorage {
   nome?: string;
   usuario?: string; // nome de login
@@ -47,7 +48,7 @@ const PermissaoGesLOG: React.FC = () => {
             `Usuário: ${nomeDoUsuario}, código: ${codigoDoUsuario} tem permissão a pagina GestLOG`
           );
           // Redireciona automaticamente para a página de GestLOG
-          window.location.href = "/gestlog";
+          window.location.href = appUrl("/gestlog");
         } else {
           setErro(resp.message || "Usuário sem permissão para GestLOG.");
         }
@@ -72,7 +73,7 @@ const PermissaoGesLOG: React.FC = () => {
         {mensagem && <div className="alert alert-success">{mensagem}</div>}
 
         <div className="mt-4 d-flex justify-content-between">
-          <a className="btn btn-outline-secondary" href="/dashboard">Voltar</a>
+          <a className="btn btn-outline-secondary" href={appUrl("/dashboard")}>Voltar</a>
         </div>
       </div>
     </div>

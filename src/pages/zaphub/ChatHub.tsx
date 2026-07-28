@@ -18,6 +18,7 @@ import {
 import TopBar from "../../components/TopBar";
 import MensagensModal from "./modals/MensagensModal";
 
+import { appUrl } from "../../utils/appUrl";
 const cardStyle: React.CSSProperties = {
   borderRadius: "14px",
   border: "1px solid rgba(0,0,0,0.06)",
@@ -856,7 +857,7 @@ const ChatHub: React.FC = () => {
         title=""
         titleClassName="d-none"
         showBack
-        backLink="/dashboard"
+        backLink={appUrl("/dashboard")}
         children={
           <button
             type="button"
@@ -1556,7 +1557,7 @@ const ChatHub: React.FC = () => {
                   >
                     Fechar
                   </button>
-                  <a href="/dashboard" className="btn btn-primary d-inline-flex align-items-center" style={{ gap: "8px" }}>
+                  <a href={appUrl("/dashboard")} className="btn btn-primary d-inline-flex align-items-center" style={{ gap: "8px" }}>
                     <HouseDoorFill size={16} />
                     <span>Voltar</span>
                   </a>

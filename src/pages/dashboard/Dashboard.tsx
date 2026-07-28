@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import TopBar from "../../components/TopBar";
 
 
+import { appUrl } from "../../utils/appUrl";
 interface CardOpcao {
   titulo: string;
   descricao: string;
@@ -42,41 +43,41 @@ const Dashboard: React.FC = () => {
       titulo: "GestMKT",
       descricao: "Gerencie marketing e campanhas",
       cor: "primary",
-      onClick: () => (window.location.href = "/gestmkt/permissao"),
+      onClick: () => (window.location.href = appUrl("/gestmkt/permissao")),
     },
     {
       titulo: "Chat Hub",
       descricao: "Acesse suas Mensagens",
       cor: "success",
-      onClick: () => (window.location.href = "/zaphub/permissao"),
+      onClick: () => (window.location.href = appUrl("/zaphub/permissao")),
     },
     {
       titulo: "GestLOG",
       descricao: "Gerencie rotas e entregas",
       cor: "warning",
-      onClick: () => (window.location.href = "/gestlog/permissao"),
+      onClick: () => (window.location.href = appUrl("/gestlog/permissao")),
     },
     {
       titulo: "GestPRO",
       descricao: "Acesse o sistema GesPRO",
       cor: "info",
       actions: [
-        { label: "GestPRO", onClick: () => (window.location.href = "/gestpro/permissao") },
-        { label: "GestOPER", onClick: () => (window.location.href = "/gestoper") },
-        { label: "GestVENDAS", onClick: () => (window.location.href = "/gestvendas") },
+        { label: "GestPRO", onClick: () => (window.location.href = appUrl("/gestpro/permissao")) },
+        { label: "GestOPER", onClick: () => (window.location.href = appUrl("/gestoper")) },
+        { label: "GestVENDAS", onClick: () => (window.location.href = appUrl("/gestvendas")) },
       ],
     },
     {
       titulo: "GestFIN",
       descricao: "Gestão financeira e conciliações",
       cor: "secondary",
-      onClick: () => (window.location.href = "/gestfin/permissao"),
+      onClick: () => (window.location.href = appUrl("/gestfin/permissao")),
     },
     {
       titulo: "Concilia",
       descricao: "Conciliar informações de Fechamento",
       cor: "danger",
-      onClick: () => (window.location.href = "/ofxconcilia/permissao"),
+      onClick: () => (window.location.href = appUrl("/ofxconcilia/permissao")),
     },
   ];
 

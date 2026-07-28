@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { verificarPermissaoOFXConcilia } from "../../services/acesso/PermissaoOFXConcilia";
 
+import { appUrl } from "../../utils/appUrl";
 interface UsuarioLocalStorage {
   nome?: string;
   usuario?: string;
@@ -30,7 +31,7 @@ const PermissaoOFXConcilia: React.FC = () => {
         if (resp.permitido) {
           setMensagem(`Usuário: ${nomeDoUsuario}, código: ${codigoDoUsuario} tem permissão a pagina OFX-Concilia`);
           // Redireciona automaticamente para a página de OFX-Concilia
-          window.location.href = "/ofxconcilia";
+          window.location.href = appUrl("/ofxconcilia");
         } else {
           setErro(resp.message || "Usuário sem permissão para OFX-Concilia.");
         }
@@ -51,7 +52,7 @@ const PermissaoOFXConcilia: React.FC = () => {
         {erro && <div className="alert alert-danger">{erro}</div>}
         {mensagem && <div className="alert alert-success">{mensagem}</div>}
         <div className="mt-4 d-flex justify-content-between">
-          <a className="btn btn-outline-secondary" href="/dashboard">Voltar</a>
+          <a className="btn btn-outline-secondary" href={appUrl("/dashboard")}>Voltar</a>
           {/* Se houver permissão, o redirecionamento já ocorreu automaticamente */}
         </div>
       </div>

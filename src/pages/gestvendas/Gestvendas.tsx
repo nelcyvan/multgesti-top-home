@@ -6,6 +6,7 @@ import ClientesSemVendaModal from "../gestpro/components/modals/ClientesSemVenda
 import PedidosEmAbertoModal from "./PedidosEmAbertoModal";
 import { buscarPedidosPorPeriodo, type PedidoGestLOG } from "../../services/gestlog/BuscarPedidosPorPeriodo";
 
+import { appUrl } from "../../utils/appUrl";
 // --- Interfaces e Tipos Auxiliares ---
 
 export interface PedidoGroup {
@@ -553,7 +554,7 @@ const Gestvendas: React.FC = () => {
         title="GestVENDAS" 
         titleClassName="text-primary" 
         showBack={true} 
-        backLink="/dashboard"
+        backLink={appUrl("/dashboard")}
       >
         <button 
           className={`btn btn-link p-0 ms-4 ${activeTab === 'indicadores' ? 'text-primary opacity-100' : 'text-muted opacity-50'}`}

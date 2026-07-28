@@ -6,6 +6,7 @@ import BuscarLancamentosApagar from "./BuscarLancamentosApagar";
 import BuscarLancamentosAreceber from "./areceber/BuscarLancamentosAreceber";
 import ModalNovoLancamento from "./ModalNovoLancamento";
 
+import { appUrl } from "../../utils/appUrl";
 interface Usuario {
   usuario?: string;
   matricula?: string;
@@ -38,7 +39,7 @@ const Gestfin: React.FC = () => {
         title="GestFIN" 
         titleClassName="" 
         showBack={true} 
-        backLink="/dashboard"
+        backLink={appUrl("/dashboard")}
       />
 
       {/* Alerta global de sucesso */}
@@ -233,7 +234,7 @@ const Gestfin: React.FC = () => {
           <span className="text-muted" style={{ fontSize: "0.85rem" }}>
             © 2025 GestFácil. GestFIN
           </span>
-          <a href="/dashboard" className="text-decoration-none">Voltar ao Dashboard</a>
+          <a href={appUrl("/dashboard")} className="text-decoration-none">Voltar ao Dashboard</a>
         </div>
       </footer>
 

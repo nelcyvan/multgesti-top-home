@@ -1,9 +1,77 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  base: '/multigesti/',
+  plugins: [
+    react(),
+    VitePWA({
+      registerType: 'autoUpdate',
+      includeAssets: ['logo.png', 'icons/*.png', 'vite.svg'],
+      manifest: {
+        name: 'Multgest-i',
+        short_name: 'Multgest-i',
+        description: 'Multgest-i — gestão operacional',
+        theme_color: '#ffffff',
+        background_color: '#ffffff',
+        display: 'standalone',
+        orientation: 'any',
+        lang: 'pt-BR',
+        start_url: 'https://tophc.com.br:1200/multigesti/',
+        scope: 'https://tophc.com.br:1200/multigesti/',
+        icons: [
+          {
+            src: 'icons/pwa-192x192.png',
+            sizes: '192x192',
+            type: 'image/png',
+          },
+          {
+            src: 'icons/pwa-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+          },
+          {
+            src: 'icons/pwa-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'maskable',
+          },
+        ],
+      },
+      workbox: {
+        maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
+        navigateFallback: '/multigesti/index.html',
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2,webp}'],
+        runtimeCaching: [
+          {
+            urlPattern: ({ url }) => url.pathname.startsWith('/api/') || url.pathname.startsWith('/apis/'),
+            handler: 'NetworkOnly',
+          },
+          {
+            urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'google-fonts-css',
+              expiration: { maxEntries: 10, maxAgeSeconds: 60 * 60 * 24 * 365 },
+            },
+          },
+          {
+            urlPattern: /^https:\/\/fonts\.gstatic\.com\/.*/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'google-fonts-webfonts',
+              expiration: { maxEntries: 20, maxAgeSeconds: 60 * 60 * 24 * 365 },
+            },
+          },
+        ],
+      },
+      devOptions: {
+        enabled: false,
+      },
+    }),
+  ],
   server: {
     host: '0.0.0.0',
     port: 5173,
@@ -25,9 +93,9 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
       },
-      // Login (servidor appGestPRO na porta 7007)
+      // Login (servidor conexao na porta 7001)
       '/api/login': {
-        target: 'http://localhost:7007',
+        target: 'http://localhost:7001',
         changeOrigin: true,
         secure: false,
       },

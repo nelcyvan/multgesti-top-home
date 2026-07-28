@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
 import oracledb from "oracledb";
 import gerirRotasRouter from "./apis/roterizacao/gerirRotas/index.js";
 import gestlogListarRotasPorDataRouter from "./apis/gestlogListarRotasPorData.js";
@@ -17,7 +19,8 @@ import pedidoPorNumpedRouter from "./apis/pedidoPorNumped.js";
 import pedidosFotosPorPedidoRouter from "./apis/pedidosFotosPorPedido.js";
 import pedidosFotosArquivoRouter from "./apis/pedidosFotosArquivo.js";
 
-dotenv.config({ path: "/home/multgesti/.env" });
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 
 oracledb.initOracleClient({ libDir: process.env.ORACLE_CLIENT_LIB });
 

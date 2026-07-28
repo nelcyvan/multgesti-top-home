@@ -6,6 +6,7 @@ import type { BuscarPedidosRef } from '../../components/gestlog/BuscarPedidosPor
 import type { PedidoGestLOG } from '../../services/gestlog/BuscarPedidosPorPeriodo';
 import TelaGeralRotas from '../../components/gestlog/modals/TelaGeralRotas';
 
+import { appUrl } from "../../utils/appUrl";
 const GestLOG: React.FC = () => {
   const buscarPedidosRef = useRef<BuscarPedidosRef>(null);
   const [matricula, setMatricula] = useState<string>('');
@@ -861,7 +862,7 @@ const GestLOG: React.FC = () => {
         title=""
         titleClassName="d-none"
         showBack={true} 
-        backLink="/dashboard"
+        backLink={appUrl("/dashboard")}
       >
         <div className="d-flex align-items-center gap-4 ms-0">
           <div className="d-flex flex-column align-items-center" style={{ cursor: 'pointer' }} onClick={() => buscarPedidosRef.current?.openConciliar()} title="Conciliar Entregas">

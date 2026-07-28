@@ -2,8 +2,12 @@ import express from "express";
 import oracledb from "oracledb";
 import cors from "cors";
 import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
 
-dotenv.config({ path: "/home/multgesti/.env" });
+// Carrega o .env na raiz do projeto (multgesti-top-home/.env)
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 oracledb.initOracleClient({ libDir: process.env.ORACLE_CLIENT_LIB });
 
 const app = express();

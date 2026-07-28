@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { PersonCircle, BoxArrowRight, House } from "react-bootstrap-icons";
 
+import { appUrl } from "../utils/appUrl";
 interface Usuario {
   usuario?: string;
   matricula?: string;
@@ -43,7 +44,7 @@ const TopBar: React.FC<TopBarProps> = ({
 
   const handleLogout = () => {
     localStorage.removeItem("usuarioLogado");
-    window.location.href = "/";
+    window.location.href = appUrl("/");
   };
 
   return (
@@ -107,7 +108,7 @@ const TopBar: React.FC<TopBarProps> = ({
             </div>
 
             {showBack && (
-              <a className="btn btn-outline-secondary ms-3 d-flex align-items-center justify-content-center" href={backLink} title="Voltar" style={{ width: '38px', height: '38px', padding: 0 }}>
+              <a className="btn btn-outline-secondary ms-3 d-flex align-items-center justify-content-center" href={backLink.startsWith(String(import.meta.env.BASE_URL || "/")) ? backLink : appUrl(backLink)} title="Voltar" style={{ width: '38px', height: '38px', padding: 0 }}>
                 <House size={20} />
               </a>
             )}

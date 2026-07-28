@@ -7,6 +7,7 @@ import ModalProdutosVendaBaixa from "./ModalProdutosVendaBaixa";
 import ModalProdutosSemVenda from "./ModalProdutosSemVenda";
 import ModalAdicionarProdutoManual from "./ModalAdicionarProdutoManual";
 
+import { appUrl } from "../../utils/appUrl";
 interface Usuario {
   usuario?: string;
   matricula?: number;
@@ -60,7 +61,7 @@ const Gestmkt: React.FC = () => {
         title="GestMKT" 
         titleClassName="text-primary" 
         showBack={true} 
-        backLink="/dashboard"
+        backLink={appUrl("/dashboard")}
       />
 
       {/* Alerta global de sucesso */}
